@@ -1,21 +1,18 @@
 import Link from 'next/link';
 import styles from './page.module.css';
 import Image from 'next/image';
+const Blog = async () => {
 
-
-async function getData(){
-   const res = await fetch('http://localhost:3000/api/posts',{
-      cache :"no-store"
-   });
-
-   if (!res.ok){
-      throw new Error('에러이지롱');
+   const getData =  async () =>{
+      const res = await fetch('http://localhost:3000/api/posts',{
+         cache :"no-store"
+      });
+      if (!res.ok){
+         throw new Error('에러이지롱');
+      }
+      return res.json();
    }
 
-   return res.json();
-}
-
-const Blog = async () => {
    const data = await getData();
    return ( 
         <div className={styles.mainContainer}>
